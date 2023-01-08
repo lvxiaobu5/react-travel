@@ -1,6 +1,7 @@
 import React from "react";
 import logo from '../../assets/logo.svg';
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
+import type { MenuProps } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 import styles from './index.module.less'
 
@@ -37,6 +38,48 @@ export const Header: React.FC = () => {
       disabled: true,
     }
   ];
+  const menus: MenuProps['items'] = [
+    {
+      label: '旅游首页',
+      key: '1',
+    },
+    {
+      label: '周末游',
+      key: '2',
+    },
+    {
+      label: '跟团游',
+      key: '3',
+    },
+    {
+      label: '自由行',
+      key: '4',
+    },
+    {
+      label: '私家团',
+      key: '5',
+    },
+    {
+      label: '邮轮',
+      key: '6',
+    },
+    {
+      label: '酒店+景点',
+      key: '7',
+    },
+    {
+      label: '当地玩乐',
+      key: '8',
+    },
+    {
+      label: '主题游',
+      key: '9',
+    },
+    {
+      label: '定制游',
+      key: '10',
+    },
+  ];
 
   return (
     <div className={styles["app-header"]}>
@@ -62,24 +105,7 @@ export const Header: React.FC = () => {
         <Title className={styles["title"]} level={3}>携程旅游网</Title>
         <Search className={styles["search-input"]} placeholder='请输入旅游目的地、主题或关键字'></Search>
       </Header>
-      <Menu className={styles["main-menu"]} mode='horizontal'>
-        <Menu.Item key={1}>旅游首页</Menu.Item>
-        <Menu.Item key={2}>周末游</Menu.Item>
-        <Menu.Item key={3}>跟团游</Menu.Item>
-        <Menu.Item key={4}>自由行</Menu.Item>
-        <Menu.Item key={5}>私家团</Menu.Item>
-        <Menu.Item key={6}>邮轮</Menu.Item>
-        <Menu.Item key={7}>酒店+景点</Menu.Item>
-        <Menu.Item key={8}>当地玩乐</Menu.Item>
-        <Menu.Item key={9}>主题游</Menu.Item>
-        <Menu.Item key={10}>定制游</Menu.Item>
-        <Menu.Item key={11}>游学</Menu.Item>
-        <Menu.Item key={12}>签证</Menu.Item>
-        <Menu.Item key={13}>企业游</Menu.Item>
-        <Menu.Item key={14}>高端游</Menu.Item>
-        <Menu.Item key={15}>爱玩户外</Menu.Item>
-        <Menu.Item key={16}>保险</Menu.Item>
-      </Menu>
+      <Menu className={styles["main-menu"]} items={menus} mode='horizontal'></Menu>
     </div>
   )
 }
