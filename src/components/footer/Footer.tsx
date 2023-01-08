@@ -1,13 +1,14 @@
 import React from "react";
-import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
+import { Layout, Typography } from 'antd';
+import styles from './index.module.less'
 
 export const Footer: React.FC = () => {
   const { Footer } = Layout;
   const { Title } = Typography;
 
   return (
-    <Footer>
-      <Title level={3} style={{textAlign: "center"}}>版权所有 @ 携程旅游网</Title>
+    <Footer className={styles["footer"]}>
+      <Title level={3} style={{textAlign: "center"}}>版权所有 @ React旅游网</Title>
     </Footer>
   )
 }

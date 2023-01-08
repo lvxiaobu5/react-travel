@@ -4,6 +4,7 @@ import { sideMenuList } from './mockup'
 import { Menu } from "antd";
 import { GlobalOutlined } from '@ant-design/icons';
 
+// 首页左侧导航菜单
 export const SideMenu: React.FC = () => {
   return (
     <Menu className={styles["side-menu"]} mode="vertical">

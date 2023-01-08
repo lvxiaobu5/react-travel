@@ -1,9 +1,19 @@
 import React from 'react';
-import { Header, Footer, SideMenu, Carousel } from './components'
-import { Row, Col } from 'antd'
+import {
+  Header,
+  Footer,
+  SideMenu,
+  Carousel,
+  ProductCollection,
+  Partners
+} from './components'
+import { Row, Col, Typography } from 'antd'
 import styles from './App.module.less';
+import { productList1, productList2, productList3 } from './mockups'
+import sideImage1 from './assets/Images/product1.png'
 
 function App() {
+  const { Title } = Typography
 
   return (
     <div className={styles["App"]}>
@@ -17,6 +27,22 @@ function App() {
             <Carousel />
           </Col>
         </Row>
+        <ProductCollection
+          title={<Title level={3} type="warning">爆款推荐</Title>}
+          sideImage={sideImage1}
+          products={productList1}
+        />
+        <ProductCollection
+          title={<Title level={3} type="danger">新品上市</Title>}
+          sideImage={sideImage1}
+          products={productList2}
+        />
+        <ProductCollection
+          title={<Title level={3} type="success">国内游推荐</Title>}
+          sideImage={sideImage1}
+          products={productList3}
+        />
+        <Partners />
       </div>
       <Footer></Footer>
     </div>

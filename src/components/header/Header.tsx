@@ -102,7 +102,7 @@ export const Header: React.FC = () => {
       </div>
       <Header className={styles["main-header"]}>
         <img className={styles["App-logo"]} src={logo} alt="" />
-        <Title className={styles["title"]} level={3}>携程旅游网</Title>
+        <Title className={styles["title"]} level={3}>React旅游网</Title>
         <Search className={styles["search-input"]} placeholder='请输入旅游目的地、主题或关键字'></Search>
       </Header>
       <Menu className={styles["main-menu"]} items={menus} mode='horizontal'></Menu>
