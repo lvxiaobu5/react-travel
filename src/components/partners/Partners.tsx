@@ -7,7 +7,7 @@ import partner2 from '../../assets/Images/partner2.png'
 import partner3 from '../../assets/Images/partner3.png'
 import partner4 from '../../assets/Images/partner4.png'
 
-// 首页左侧导航菜单
+// 首页合作企业
 export const Partners: React.FC = () => {
   return (
     <div className={styles["partners"]}>
