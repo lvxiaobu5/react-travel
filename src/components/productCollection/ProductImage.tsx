@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './index.module.less'
 import { Image, Typography } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 interface PropsType {
   id: string | number;
@@ -13,9 +14,10 @@ interface PropsType {
 export const ProductImage:React.FC<PropsType> = (props) => {
   const { id, size, imageSrc, price, title } = props
   const { Text } = Typography
+  const navigate = useNavigate()
 
   return (
-    <div>
+    <div onClick={() => navigate(`detail/${id}`)}>
       {size === "large" ? (
         <Image src={imageSrc} width={490} height={285}></Image>
       ) : (

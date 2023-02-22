@@ -4,6 +4,7 @@ import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 import styles from './index.module.less'
+import { useNavigate } from 'react-router-dom'
 
 export const Header: React.FC = () => {
   const { Header } = Layout;
@@ -80,6 +81,7 @@ export const Header: React.FC = () => {
       key: '10',
     },
   ];
+  const navigate = useNavigate()
 
   return (
     <div className={styles["app-header"]}>
@@ -95,14 +97,16 @@ export const Header: React.FC = () => {
             语言
           </Dropdown.Button>
           <Group className={styles["button-group"]}>
-            <Button>注册</Button>
-            <Button>登录</Button>
+            <Button onClick={() => navigate(`register`)}>注册</Button>
+            <Button onClick={() => navigate(`signIn`)}>登录</Button>
           </Group>
         </div>
       </div>
       <Header className={styles["main-header"]}>
-        <img className={styles["App-logo"]} src={logo} alt="" />
-        <Title className={styles["title"]} level={3}>React旅游网</Title>
+        <span onClick={() => navigate(`/`)}>
+          <img className={styles["App-logo"]} src={logo} alt="" />
+          <Title className={styles["title"]} level={3}>React旅游网</Title>
+        </span>
         <Search className={styles["search-input"]} placeholder='请输入旅游目的地、主题或关键字'></Search>
       </Header>
       <Menu className={styles["main-menu"]} items={menus} mode='horizontal'></Menu>
