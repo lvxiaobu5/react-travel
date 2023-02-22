@@ -4,7 +4,7 @@ import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 import styles from './index.module.less'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 
 export const Header: React.FC = () => {
   const { Header } = Layout;
@@ -103,10 +103,10 @@ export const Header: React.FC = () => {
         </div>
       </div>
       <Header className={styles["main-header"]}>
-        <span onClick={() => navigate(`/`)}>
+        <Link to={`/`}>
           <img className={styles["App-logo"]} src={logo} alt="" />
           <Title className={styles["title"]} level={3}>React旅游网</Title>
-        </span>
+        </Link>
         <Search className={styles["search-input"]} placeholder='请输入旅游目的地、主题或关键字'></Search>
       </Header>
       <Menu className={styles["main-menu"]} items={menus} mode='horizontal'></Menu>
