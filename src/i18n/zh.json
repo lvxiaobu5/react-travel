@@ -1,0 +1,27 @@
+{
+  "header": {
+    "title": "React旅游网",
+    "register": "注册",
+    "login": "登录",
+    
+    "home": "旅游首页",
+    "weekend": "周末游",
+    "group": "跟团游",
+    "backpack": "自由行",
+    "private": "私家团",
+    "cruise": "邮轮",
+    "hotel": "酒店+景点",
+    "local": "当地玩乐",
+    "theme": "主题游",
+    "custom": "定制游"
+  },
+  "footer": {
+    "detail": "版权所有 @ React旅游网"
+  },
+  "home_page": {
+    "hot_recommended": "爆款推荐",
+    "new_arrival": "新品上市",
+    "domestic_travel": "国内游推荐",
+    "joint_venture": "合作企业"
+  }
+}

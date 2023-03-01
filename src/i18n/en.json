@@ -1,0 +1,27 @@
+{
+  "header": {
+    "title": "React Travel",
+    "register": "Register",
+    "login": "Login",
+    
+    "home": "Home",
+    "weekend": "Weekend",
+    "group": "Group",
+    "backpack": "Backpack",
+    "private": "Private",
+    "cruise": "Cruise",
+    "hotel": "Hotel & Attractions",
+    "local": "Local",
+    "theme": "Theme",
+    "custom": "Custom"
+  },
+  "footer": {
+    "detail": "All rights reserved @ ReactTravel.com"
+  },
+  "home_page": {
+    "hot_recommended": "Hot Recommended",
+    "new_arrival": "New arrival",
+    "domestic_travel": "Domestic travel",
+    "joint_venture": "Cooperation"
+  }
+}

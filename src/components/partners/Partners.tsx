@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './index.module.less'
 import { Divider, Row, Col, Image } from "antd";
+import { useTranslation } from 'react-i18next'
 
 import partner1 from '../../assets/Images/partner1.png'
 import partner2 from '../../assets/Images/partner2.png'
@@ -9,10 +10,12 @@ import partner4 from '../../assets/Images/partner4.png'
 
 // 首页合作企业
 export const Partners: React.FC = () => {
+  const { t } = useTranslation()
+
   return (
     <div className={styles["partners"]}>
       <Divider orientation="left">
-        <span className={styles["partnerText"]}>合作企业</span>
+        <span className={styles["partnerText"]}>{t('home_page.joint_venture')}</span>
       </Divider>
       <Row>
         <Col span={6}>

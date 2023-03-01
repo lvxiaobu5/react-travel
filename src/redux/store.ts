@@ -1,5 +1,5 @@
 import { legacy_createStore as createStore } from 'redux'
-import languageReducer from './languageReducer'
+import languageReducer from './language/languageReducer'
 
 // createStore需要传入一个reducer作为参数
 const store = createStore(languageReducer)

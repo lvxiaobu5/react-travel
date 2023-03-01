@@ -5,83 +5,126 @@ import type { MenuProps } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 import styles from './index.module.less'
 import { useNavigate,Link } from 'react-router-dom'
+// import { useSelector } from 'redux'
+import store from '../../redux/store'
+import { useTranslation } from 'react-i18next'
 
 export const Header: React.FC = () => {
   const { Header } = Layout;
   const { Title, Text } = Typography;
   const { Search } = Input;
   const { Group } = Button;
+  function getItem(
+    label: React.ReactNode,
+    key?: React.Key | null,
+    icon?: React.ReactNode,
+    children?: any[],
+  ): any {
+    return {
+      key,
+      icon,
+      children,
+      label,
+    } as any;
+  }
+  // const menus: MenuProps['items'] = [
+  //   {
+  //     label: '旅游首页',
+  //     key: '1',
+  //   },
+  //   {
+  //     label: '周末游',
+  //     key: '2',
+  //   },
+  //   {
+  //     label: '跟团游',
+  //     key: '3',
+  //   },
+  //   {
+  //     label: '自由行',
+  //     key: '4',
+  //   },
+  //   {
+  //     label: '私家团',
+  //     key: '5',
+  //   },
+  //   {
+  //     label: '邮轮',
+  //     key: '6',
+  //   },
+  //   {
+  //     label: '酒店+景点',
+  //     key: '7',
+  //   },
+  //   {
+  //     label: '当地玩乐',
+  //     key: '8',
+  //   },
+  //   {
+  //     label: '主题游',
+  //     key: '9',
+  //   },
+  //   {
+  //     label: '定制游',
+  //     key: '10',
+  //   },
+  // ];
+  const navigate = useNavigate()
+  const { t } = useTranslation()
+  const menus: any[] = [
+    getItem(t('header.home'), '1'),
+    getItem(t('header.weekend'), '2'),
+    getItem(t('header.group'), '3'),
+    getItem(t('header.backpack'), '4'),
+    getItem(t('header.private'), '5'),
+    getItem(t('header.cruise'), '6'),
+    getItem(t('header.hotel'), '7'),
+    getItem(t('header.local'), '8'),
+    getItem(t('header.theme'), '9'),
+    getItem(t('header.custom'), '10'),
+  ];
+  console.log(1, store.getState())
+  const foo = (type: string) => {
+    if (type === 'new') {
+      const action = {
+        type: 'add_language',
+        payload: { code: 'new_language', name: '新语言' }
+      }
+      store.dispatch(action)
+    } else {
+      const action = {
+        type: 'change_language',
+        payload: type
+      }
+      store.dispatch(action)
+    }
+  }
   const items = [
     {
       key: '1',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-          1st menu item
+        <a onClick={() => foo('zh')} rel="noopener noreferrer">
+          中文
         </a>
       ),
     },
     {
       key: '2',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-          2nd menu item (disabled)
+        <a onClick={() => foo('en')} rel="noopener noreferrer">
+          English
         </a>
       ),
-      disabled: true,
     },
-    {
-      key: '3',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-          3rd menu item (disabled)
-        </a>
-      ),
-      disabled: true,
-    }
+    // {
+    //   key: '3',
+    //   label: (
+    //     <a onClick={() => foo('new')} rel="noopener noreferrer">
+    //       添加新语言
+    //     </a>
+    //   ),
+    // }
   ];
-  const menus: MenuProps['items'] = [
-    {
-      label: '旅游首页',
-      key: '1',
-    },
-    {
-      label: '周末游',
-      key: '2',
-    },
-    {
-      label: '跟团游',
-      key: '3',
-    },
-    {
-      label: '自由行',
-      key: '4',
-    },
-    {
-      label: '私家团',
-      key: '5',
-    },
-    {
-      label: '邮轮',
-      key: '6',
-    },
-    {
-      label: '酒店+景点',
-      key: '7',
-    },
-    {
-      label: '当地玩乐',
-      key: '8',
-    },
-    {
-      label: '主题游',
-      key: '9',
-    },
-    {
-      label: '定制游',
-      key: '10',
-    },
-  ];
-  const navigate = useNavigate()
 
   return (
     <div className={styles["app-header"]}>
@@ -97,15 +140,15 @@ export const Header: React.FC = () => {
             语言
           </Dropdown.Button>
           <Group className={styles["button-group"]}>
-            <Button onClick={() => navigate(`register`)}>注册</Button>
-            <Button onClick={() => navigate(`signIn`)}>登录</Button>
+            <Button onClick={() => navigate(`register`)}>{t('header.register')}</Button>
+            <Button onClick={() => navigate(`signIn`)}>{t('header.login')}</Button>
           </Group>
         </div>
       </div>
       <Header className={styles["main-header"]}>
         <Link to={`/`}>
           <img className={styles["App-logo"]} src={logo} alt="" />
-          <Title className={styles["title"]} level={3}>React旅游网</Title>
+          <Title className={styles["title"]} level={3}>{t('header.title')}</Title>
         </Link>
         <Search className={styles["search-input"]} placeholder='请输入旅游目的地、主题或关键字'></Search>
       </Header>
