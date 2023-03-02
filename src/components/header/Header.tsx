@@ -5,9 +5,11 @@ import type { MenuProps } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 import styles from './index.module.less'
 import { useNavigate,Link } from 'react-router-dom'
-// import { useSelector } from 'redux'
-import store from '../../redux/store'
+import { useSelector } from '../../redux/hooks'
+import store, { RootState } from '../../redux/store'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from "react-redux";
+import { changeLanguageActionCreator, addLanguageActionCreator } from "../../redux/language/languageActions";
 
 export const Header: React.FC = () => {
   const { Header } = Layout;
@@ -83,27 +85,21 @@ export const Header: React.FC = () => {
     getItem(t('header.theme'), '9'),
     getItem(t('header.custom'), '10'),
   ];
-  console.log(1, store.getState())
-  const foo = (type: string) => {
+  const dispatch = useDispatch()
+  const changelanguage = (type: 'zh' | 'en' | 'new') => {
     if (type === 'new') {
-      const action = {
-        type: 'add_language',
-        payload: { code: 'new_language', name: '新语言' }
-      }
-      store.dispatch(action)
+      const action = addLanguageActionCreator('新语言', 'new_language')
+      dispatch(action)
     } else {
-      const action = {
-        type: 'change_language',
-        payload: type
-      }
-      store.dispatch(action)
+      const action = changeLanguageActionCreator(type)
+      dispatch(action)
     }
   }
   const items = [
     {
       key: '1',
       label: (
-        <a onClick={() => foo('zh')} rel="noopener noreferrer">
+        <a onClick={() => changelanguage('zh')} rel="noopener noreferrer">
           中文
         </a>
       ),
@@ -111,7 +107,7 @@ export const Header: React.FC = () => {
     {
       key: '2',
       label: (
-        <a onClick={() => foo('en')} rel="noopener noreferrer">
+        <a onClick={() => changelanguage('en')} rel="noopener noreferrer">
           English
         </a>
       ),
@@ -119,12 +115,13 @@ export const Header: React.FC = () => {
     // {
     //   key: '3',
     //   label: (
-    //     <a onClick={() => foo('new')} rel="noopener noreferrer">
+    //     <a onClick={() => changelanguage('new')} rel="noopener noreferrer">
     //       添加新语言
     //     </a>
     //   ),
     // }
   ];
+  const language = useSelector((state) => state.language)
 
   return (
     <div className={styles["app-header"]}>
@@ -137,7 +134,7 @@ export const Header: React.FC = () => {
             menu={{items}}
             icon={<GlobalOutlined />}
           >
-            语言
+            {language === 'zh' ? '中文' : 'English'}
           </Dropdown.Button>
           <Group className={styles["button-group"]}>
             <Button onClick={() => navigate(`register`)}>{t('header.register')}</Button>
