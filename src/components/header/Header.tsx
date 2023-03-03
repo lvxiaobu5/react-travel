@@ -121,7 +121,7 @@ export const Header: React.FC = () => {
     //   ),
     // }
   ];
-  const language = useSelector((state) => state.language)
+  const language = useSelector((state) => state.language.language)
 
   return (
     <div className={styles["app-header"]}>

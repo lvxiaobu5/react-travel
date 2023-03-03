@@ -1,8 +1,15 @@
-import { legacy_createStore as createStore } from 'redux'
+import { legacy_createStore as createStore, combineReducers } from 'redux'
 import languageReducer from './language/languageReducer'
+import recommendProductsReducer from './recommendProducts/recommendProductsReducer'
+
+// combineReducers方法创建store，把多个reducer捆绑起来
+const rootReducer = combineReducers({
+  language: languageReducer,
+  recommendProducts: recommendProductsReducer
+})
 
 // createStore需要传入一个reducer作为参数
-const store = createStore(languageReducer)
+const store = createStore(rootReducer)
 
 // store的类型
 export type RootState = ReturnType<typeof store.getState>
