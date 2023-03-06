@@ -128,7 +128,7 @@ export const Header: React.FC = () => {
       {/* top-header */}
       <div className={styles["top-header"]}>
         <div className={styles["inner"]}>
-          <Text>让旅游更快乐</Text>
+          <Text>{t('header.advertising')}</Text>
           <Dropdown.Button
             style={{marginLeft: 15, display: "inline"}}
             menu={{items}}
