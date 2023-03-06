@@ -12,6 +12,7 @@ import styles from './index.module.less';
 import { productList1, productList2, productList3 } from './mockups'
 import sideImage1 from '../../assets/Images/product1.png'
 import { useTranslation } from 'react-i18next'
+import { getDataActionCreator } from "../../redux/recommendProducts/recommendProductsActions";
 
 export const Home: React.FC = () => {
   const { Title } = Typography
