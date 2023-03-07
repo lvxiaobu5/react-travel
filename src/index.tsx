@@ -9,7 +9,7 @@ import store from './redux/store';
 import axios from 'axios'
 
 // 全局axios请求的请求头都会加上x-icode的字段和值，axios请求就无需手动添加了
-axios.defaults.headers['x-icode'] = 'xxx'
+axios.defaults.headers['x-icode'] = 'A32285158FEBF470'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -6,6 +6,7 @@ export const actionLog: Middleware = (store) => (next) => (action) => {
   console.log('当前state：', store.getState())
   // 需求：记录每次dispatch的action信息
   console.log('本action：', action)
+  // next = store.dispatch
   next(action)
   // 不仅要打印当前state，还得打印更改后的state
   console.log('更新后的state：', store.getState())
