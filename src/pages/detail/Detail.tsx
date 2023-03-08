@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
-import { Spin, Row, Col, DatePicker } from "antd";
+import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu } from "antd";
 import styles from './index.module.less'
-import { Header, Footer, ProductIntro } from "../../components";
+import { Header, Footer, ProductIntro, ProductComments } from "../../components";
 import url from "../../service";
+import { commentMockData } from "./mockup";
 
 interface MatchParams {
   touristRouteId: string
 }
 
 const { RangePicker } = DatePicker;
+const { Title } = Typography
 
 export const Detail:React.FC = () => {
   // const params = useParams()
@@ -55,7 +57,7 @@ export const Detail:React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={styles["detail-content"]}>
       <Header />
       <div className={styles["page-content"]}>
         {/* 产品简介与日期选择 */}
@@ -79,24 +81,49 @@ export const Detail:React.FC = () => {
           </Row>
         </div>
         {/* 锚点菜单 */}
-        <div className={styles["product-detail-anchor"]}>
-
-        </div>
+        <Anchor className={styles["product-detail-anchor"]}>
+          <Menu mode="horizontal">
+            <Menu.Item key={1}>
+              <Anchor.Link href="#feature" title="产品特色"></Anchor.Link>
+            </Menu.Item>
+            <Menu.Item key={3}>
+              <Anchor.Link href="#fees" title="费用"></Anchor.Link>
+            </Menu.Item>
+            <Menu.Item key={4}>
+              <Anchor.Link href="#notes" title="预订须知"></Anchor.Link>
+            </Menu.Item>
+            <Menu.Item key={5}>
+              <Anchor.Link href="#comments" title="用户评价"></Anchor.Link>
+            </Menu.Item>
+          </Menu>
+        </Anchor>
         {/* 产品特色 */}
         <div id="feature" className={styles["product-detail-container"]}>
-
+          <Divider orientation="center">
+            <Title level={3}>产品特色</Title>
+          </Divider>
+          <div dangerouslySetInnerHTML={{__html: product.features}} style={{margin: 50}}></div>
         </div>
         {/* 费用 */}
         <div id="fees" className={styles["product-detail-container"]}>
-
+          <Divider orientation="center">
+            <Title level={3}>费用</Title>
+          </Divider>
+          <div dangerouslySetInnerHTML={{__html: product.fees}} style={{margin: 50}}></div>
         </div>
         {/* 预订须知 */}
         <div id="notes" className={styles["product-detail-container"]}>
-
+          <Divider orientation="center">
+            <Title level={3}>预订须知</Title>
+          </Divider>
+          <div dangerouslySetInnerHTML={{__html: product.notes}} style={{margin: 50}}></div>
         </div>
-        {/* 商品评价 */}
+        {/* 用户评价 */}
         <div id="comments" className={styles["product-detail-container"]}>
-
+          <Divider orientation="center">
+            <Title level={3}>用户评价</Title>
+          </Divider>
+          <ProductComments data={commentMockData} />
         </div>
       </div>
       <Footer />
