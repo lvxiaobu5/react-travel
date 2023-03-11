@@ -6,6 +6,9 @@ import styles from './index.module.less'
 import { Header, Footer, ProductIntro, ProductComments } from "../../components";
 import url from "../../service";
 import { commentMockData } from "./mockup";
+import { productDetailSlice } from "../../redux/productDetail/slice";
+import { useSelector } from "../../redux/hooks";
+import { useDispatch } from "react-redux";
 
 interface MatchParams {
   touristRouteId: string
@@ -17,26 +20,42 @@ const { Title } = Typography
 export const Detail:React.FC = () => {
   // const params = useParams()
   const { touristRouteId } = useParams()
-  const [loading, setLoading] = useState<boolean>(true)
-  const [product, setProduct] = useState<any>(null)
-  const [error, setError] = useState<string | null>(null)
+  const dispatch = useDispatch()
+  // const [loading, setLoading] = useState<boolean>(true)
+  // const [product, setProduct] = useState<any>(null)
+  // const [error, setError] = useState<string | null>(null)
+  const product = useSelector(state => state.productDetail.data)
+  const loading = useSelector(state => state.productDetail.loading)
+  const error = useSelector(state => state.productDetail.error)
 
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true)
-      try {
-        const { data } = await axios.get(`${url}/touristRoutes/${touristRouteId}`)
-        console.log(1, data)
-        setProduct(data)
-        setLoading(false)
-      } catch (error: any) {
-        setError(error.message)
-        setLoading(false)
-      }
+// useEffect(() => {
+//   const fetchData = async () => {
+//     setLoading(true)
+//     try {
+//       const { data } = await axios.get(`${url}/touristRoutes/${touristRouteId}`)
+//       console.log(1, data)
+//       setProduct(data)
+//       setLoading(false)
+//     } catch (error: any) {
+//       setError(error.message)
+//       setLoading(false)
+//     }
+//   }
+//   fetchData()
+// }, [])
+useEffect(() => {
+  const fetchData = async () => {
+    dispatch(productDetailSlice.actions.fetchStart())
+    try {
+      const { data } = await axios.get(`${url}/touristRoutes/${touristRouteId}`)
+      console.log(1, data)
+      dispatch(productDetailSlice.actions.fetchSuccess(data))
+    } catch (error: any) {
+      dispatch(productDetailSlice.actions.fetchFail(error.message))
     }
-    fetchData()
-  }, [])
+  }
+  fetchData()
+}, [])
 
   // 防止页面报错
   if (loading) {
