@@ -9,6 +9,7 @@ import { commentMockData } from "./mockup";
 import { productDetailSlice } from "../../redux/productDetail/slice";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
+import { getProductDetail } from "../../redux/productDetail/slice";
 
 interface MatchParams {
   touristRouteId: string
@@ -44,17 +45,7 @@ export const Detail:React.FC = () => {
 //   fetchData()
 // }, [])
 useEffect(() => {
-  const fetchData = async () => {
-    dispatch(productDetailSlice.actions.fetchStart())
-    try {
-      const { data } = await axios.get(`${url}/touristRoutes/${touristRouteId}`)
-      console.log(1, data)
-      dispatch(productDetailSlice.actions.fetchSuccess(data))
-    } catch (error: any) {
-      dispatch(productDetailSlice.actions.fetchFail(error.message))
-    }
-  }
-  fetchData()
+  dispatch(getProductDetail(touristRouteId))
 }, [])
 
   // 防止页面报错

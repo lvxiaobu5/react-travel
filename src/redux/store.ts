@@ -1,6 +1,5 @@
 import {
   legacy_createStore as createStore,
-  combineReducers,
   applyMiddleware
 } from 'redux'
 import languageReducer from './language/languageReducer'
@@ -8,6 +7,7 @@ import recommendProductsReducer from './recommendProducts/recommendProductsReduc
 import thunk from 'redux-thunk'
 import { actionLog } from './middlewares/actionLog'
 import { productDetailSlice } from './productDetail/slice'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 // combineReducers方法创建store，把多个reducer捆绑起来
 const rootReducer = combineReducers({
@@ -17,7 +17,12 @@ const rootReducer = combineReducers({
 })
 
 // createStore需要传入一个reducer作为参数
-const store = createStore(rootReducer, applyMiddleware(thunk, actionLog))
+// const store = createStore(rootReducer, applyMiddleware(thunk, actionLog))
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: ((getDefaultMiddleware) => [...getDefaultMiddleware(), actionLog]),
+  devTools: true,
+})
 
 // store的类型
 export type RootState = ReturnType<typeof store.getState>
