@@ -4,7 +4,7 @@ import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 import styles from './index.module.less'
-import { useNavigate,Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useSelector } from '../../redux/hooks'
 import store, { RootState } from '../../redux/store'
 import { useTranslation } from 'react-i18next'
@@ -147,7 +147,11 @@ export const Header: React.FC = () => {
           <img className={styles["App-logo"]} src={logo} alt="" />
           <Title className={styles["title"]} level={3}>{t('header.title')}</Title>
         </Link>
-        <Search className={styles["search-input"]} placeholder='请输入旅游目的地、主题或关键字'></Search>
+        <Search
+          className={styles["search-input"]}
+          placeholder='请输入旅游目的地、主题或关键字'
+          onSearch={keyword => navigate(`/search/${keyword}`)}
+        ></Search>
       </Header>
       <Menu className={styles["main-menu"]} items={menus} mode='horizontal'></Menu>
     </div>
