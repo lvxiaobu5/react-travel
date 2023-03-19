@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 import { getDataActionCreator } from "../../redux/recommendProducts/recommendProductsActions";
 import axios from "axios";
 import url from "../../service";
+import { MainLayout } from "../../layouts";
 
 export const Home: React.FC = () => {
   const [productList, setProductList] = useState<any>([])
@@ -47,35 +48,31 @@ export const Home: React.FC = () => {
   }
 
   return (
-    <>
-      <Header></Header>
-      <div className={styles["page-content"]}>
-        <Row>
-          <Col span={6}>
-            <SideMenu />
-          </Col>
-          <Col span={18}>
-            <Carousel />
-          </Col>
-        </Row>
-        <ProductCollection
-          title={<Title level={3} type="warning">{t('home_page.hot_recommended')}</Title>}
-          sideImage={sideImage1}
-          products={productList[0].touristRoutes}
-        />
-        <ProductCollection
-          title={<Title level={3} type="danger">{t('home_page.new_arrival')}</Title>}
-          sideImage={sideImage1}
-          products={productList[1].touristRoutes}
-        />
-        <ProductCollection
-          title={<Title level={3} type="success">{t('home_page.domestic_travel')}</Title>}
-          sideImage={sideImage1}
-          products={productList[2].touristRoutes}
-        />
-        <Partners />
-      </div>
-      <Footer></Footer>
-    </>
+    <MainLayout>
+      <Row>
+        <Col span={6}>
+          <SideMenu />
+        </Col>
+        <Col span={18}>
+          <Carousel />
+        </Col>
+      </Row>
+      <ProductCollection
+        title={<Title level={3} type="warning">{t('home_page.hot_recommended')}</Title>}
+        sideImage={sideImage1}
+        products={productList[0].touristRoutes}
+      />
+      <ProductCollection
+        title={<Title level={3} type="danger">{t('home_page.new_arrival')}</Title>}
+        sideImage={sideImage1}
+        products={productList[1].touristRoutes}
+      />
+      <ProductCollection
+        title={<Title level={3} type="success">{t('home_page.domestic_travel')}</Title>}
+        sideImage={sideImage1}
+        products={productList[2].touristRoutes}
+      />
+      <Partners />
+    </MainLayout>
   )
 }

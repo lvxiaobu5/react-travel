@@ -8,6 +8,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { getProductSearch } from "../../redux/productSearch/slice";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
+import { MainLayout } from "../../layouts";
 
 export const Search: React.FC = () => {
   const { keyword } = useParams()
@@ -65,23 +66,19 @@ export const Search: React.FC = () => {
   }
   
   return (
-    <div>
-      <Header />
-      <div className={styles["search-content"]}>
-        {/* 分类过滤器 */}
-        <div className={styles["product-list-container"]}>
-          <Filter data={filterData} />
-        </div>
-        {/* 产品列表 */}
-        <div className={styles["product-list-container"]}>
-          <ProductList
-            data={productList}
-            pagination={pagination}
-            onPageChange={onPageChange}
-          />
-        </div>
+    <MainLayout>
+      {/* 分类过滤器 */}
+      <div className={styles["product-list-container"]}>
+        <Filter data={filterData} />
       </div>
-      <Footer />
-    </div>
+      {/* 产品列表 */}
+      <div className={styles["product-list-container"]}>
+        <ProductList
+          data={productList}
+          pagination={pagination}
+          onPageChange={onPageChange}
+        />
+      </div>
+    </MainLayout>
   )
 }
