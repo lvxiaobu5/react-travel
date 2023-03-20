@@ -14,7 +14,7 @@ import sideImage1 from '../../assets/Images/product1.png'
 import { useTranslation } from 'react-i18next'
 import { getDataActionCreator } from "../../redux/recommendProducts/recommendProductsActions";
 import axios from "axios";
-import url from "../../service";
+import { url } from "../../service";
 import { MainLayout } from "../../layouts";
 
 export const Home: React.FC = () => {

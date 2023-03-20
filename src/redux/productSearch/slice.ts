@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
-import url from "../../service";
+import { url } from "../../service";
 
 interface ProductSearchState {
   loading: boolean;

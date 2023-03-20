@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu } from "antd";
 import styles from './index.module.less'
 import { Header, Footer, ProductIntro, ProductComments } from "../../components";
-import url from "../../service";
+import { url } from "../../service";
 import { commentMockData } from "./mockup";
 import { productDetailSlice } from "../../redux/productDetail/slice";
 import { useSelector } from "../../redux/hooks";
