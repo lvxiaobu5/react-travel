@@ -40,7 +40,7 @@ export const UserLayout: React.FC<any> = ({ children }) => {
           {children}
         </div>
       </Content>
-      <Footer style={{ textAlign: "center" }}>Footer就不写了，太累了</Footer>
+      <Footer style={{ textAlign: "center" }}>Footer</Footer>
     </Layout>
   );
 };
