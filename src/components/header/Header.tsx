@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from '../../assets/logo.svg';
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
@@ -10,18 +10,25 @@ import store, { RootState } from '../../redux/store'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from "react-redux";
 import { changeLanguageActionCreator, addLanguageActionCreator } from "../../redux/language/languageActions";
+import jwt_decode, { JwtPayload as DefaultJwtPayload } from 'jwt-decode'
+import { userSlice } from "../../redux/user/slice";
+
+interface JwtPayload extends DefaultJwtPayload {
+  username: string
+}
 
 export const Header: React.FC = () => {
+  const [username, setUsername] = useState('')
   const { Header } = Layout;
   const { Title, Text } = Typography;
   const { Search } = Input;
   const { Group } = Button;
-  function getItem(
+  const getItem = (
     label: React.ReactNode,
     key?: React.Key | null,
     icon?: React.ReactNode,
     children?: any[],
-  ): any {
+  ): any => {
     return {
       key,
       icon,
@@ -84,6 +91,12 @@ export const Header: React.FC = () => {
     getItem(t('header.local'), '8'),
     getItem(t('header.theme'), '9'),
     getItem(t('header.custom'), '10'),
+    getItem(t('header.study'), '11'),
+    getItem(t('header.visa'), '12'),
+    getItem(t('header.enterprise'), '13'),
+    getItem(t('header.high_end'), '14'),
+    getItem(t('header.outdoor'), '15'),
+    getItem(t('header.insurance'), '16'),
   ];
   const dispatch = useDispatch()
   const changelanguage = (type: 'zh' | 'en' | 'new') => {
@@ -122,6 +135,20 @@ export const Header: React.FC = () => {
     // }
   ];
   const language = useSelector((state) => state.language.language)
+  const jwt = useSelector((state) => state.user.token)
+  useEffect(() => {
+    if (jwt) {
+      // 使用jwt_decode解码并且保存token
+      const token = jwt_decode<JwtPayload>(jwt)
+      setUsername(token.username)
+    }
+  }, [jwt])
+  const onLogout = () => {
+    // 直接修改state的数据
+    dispatch(userSlice.actions.logOut())
+    navigate(`/`)
+    window.location.reload() // 刷新页面，可加可不加
+  }
 
   return (
     <div className={styles["app-header"]}>
@@ -136,10 +163,23 @@ export const Header: React.FC = () => {
           >
             {language === 'zh' ? '中文' : 'English'}
           </Dropdown.Button>
-          <Group className={styles["button-group"]}>
-            <Button onClick={() => navigate(`/register`)}>{t('header.register')}</Button>
-            <Button onClick={() => navigate(`/signIn`)}>{t('header.login')}</Button>
-          </Group>
+          {jwt ? (
+            <div className={styles["f_r"]}>
+              <span className={styles["m_r_10"]}>
+                {t("header.welcome")}
+                <Text strong className={styles["m_l_10"]}>{username}</Text>
+              </span>
+              <Group className={styles["button-group"]}>
+                <Button>{t("header.shoppingCart")}</Button>
+                <Button onClick={onLogout}>{t("header.signOut")}</Button>
+              </Group>
+            </div>
+          ) : (
+            <Group className={styles["button-group"]}>
+              <Button onClick={() => navigate(`/register`)}>{t('header.register')}</Button>
+              <Button onClick={() => navigate(`/signIn`)}>{t('header.login')}</Button>
+            </Group>
+          )}
         </div>
       </div>
       <Header className={styles["main-header"]}>

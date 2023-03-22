@@ -14,7 +14,16 @@
     "hotel": "Hotel & Attractions",
     "local": "Local",
     "theme": "Theme",
-    "custom": "Custom"
+    "custom": "Custom",
+    "study": "Study",
+    "visa":"Visa",
+    "enterprise":"Enterprise",
+    "high_end":"High-end",
+    "outdoor":"Outdoor",
+    "insurance":"Insurance",
+    "shoppingCart": "Shopping Cart",
+    "signOut": "Sign Out",
+    "welcome": "Welcome back"
   },
   "footer": {
     "detail": "All rights reserved @ ReactTravel.com"
