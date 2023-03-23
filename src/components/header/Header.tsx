@@ -170,7 +170,7 @@ export const Header: React.FC = () => {
                 <Text strong className={styles["m_l_10"]}>{username}</Text>
               </span>
               <Group className={styles["button-group"]}>
-                <Button>{t("header.shoppingCart")}</Button>
+                <Button onClick={() => navigate(`/shoppingCart`)}>{t("header.shoppingCart")}</Button>
                 <Button onClick={onLogout}>{t("header.signOut")}</Button>
               </Group>
             </div>
