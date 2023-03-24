@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './App.module.less';
 import { useSelector } from './redux/hooks';
 import {
@@ -15,6 +15,8 @@ import {
   Search,
   ShoppingCart
 } from './pages'
+import { useDispatch } from 'react-redux';
+import { getShoppingCart } from './redux/shoppingCart/slice';
 
 // 私有化路由函数
 // isAuthenticated： 判定是否登录
@@ -31,6 +33,12 @@ const PrivateRoute = (props: any) => {
 
 function App() {
   const jwt = useSelector(s => s.user.token)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getShoppingCart(jwt))
+    }
+  }, [jwt])
 
   return (
     <div className={styles["App"]}>

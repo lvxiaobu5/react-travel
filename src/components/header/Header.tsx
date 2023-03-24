@@ -136,6 +136,8 @@ export const Header: React.FC = () => {
   ];
   const language = useSelector((state) => state.language.language)
   const jwt = useSelector((state) => state.user.token)
+  const shoppingCartItems = useSelector(s => s.shoppingCart.items)
+  const shoppingCartLoading = useSelector(s => s.shoppingCart.loading)
   useEffect(() => {
     if (jwt) {
       // 使用jwt_decode解码并且保存token
@@ -170,7 +172,10 @@ export const Header: React.FC = () => {
                 <Text strong className={styles["m_l_10"]}>{username}</Text>
               </span>
               <Group className={styles["button-group"]}>
-                <Button onClick={() => navigate(`/shoppingCart`)}>{t("header.shoppingCart")}</Button>
+                <Button
+                  onClick={() => navigate(`/shoppingCart`)}
+                  loading={shoppingCartLoading}
+                >{t("header.shoppingCart")}({shoppingCartItems.length})</Button>
                 <Button onClick={onLogout}>{t("header.signOut")}</Button>
               </Group>
             </div>

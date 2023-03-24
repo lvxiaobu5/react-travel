@@ -51,7 +51,7 @@ export const clearShoppingCart: any = createAsyncThunk(
   // thunkAPI下面有dispatch和getState等方法
   async (parameter: {jwt: string, itemIds: number[]}, thunkAPI) => {
     return await axios.delete(
-      `${url}/shoppingCart/items(${parameter.itemIds.join(',')})`, 
+      `${url}/shoppingCart/items/(${parameter.itemIds.join(',')})`, 
       {
         headers: {
           Authorization: `bearer ${parameter.jwt}`

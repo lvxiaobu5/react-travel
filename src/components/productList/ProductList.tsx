@@ -25,7 +25,7 @@ interface PropsType {
       touristRouteId: string;
     }[]
   }[];
-  pagination: {
+  pagination?: {
     totalCount: number;
     currentPage: number;
     pageSize: number;
@@ -68,15 +68,19 @@ export const ProductList: React.FC<PropsType> = ({data, pagination, onPageChange
           </Sider>
         </Layout>
       ))}
-      <div>搜索总路线：<Text strong>{pagination.totalCount}</Text></div>
-      <div className={styles["product-list-pagination"]}>
-        <Pagination
-          total={pagination.totalCount}
-          current={pagination.currentPage}
-          pageSize={pagination.pageSize}
-          onChange={(page) => onPageChange && onPageChange(page, pagination.pageSize)}
-        />
-      </div>
+      {pagination && (
+        <>
+          <div>搜索总路线：<Text strong>{pagination.totalCount}</Text></div>
+          <div className={styles["product-list-pagination"]}>
+            <Pagination
+              total={pagination.totalCount}
+              current={pagination.currentPage}
+              pageSize={pagination.pageSize}
+              onChange={(page) => onPageChange && onPageChange(page, pagination.pageSize)}
+            />
+          </div>
+        </>
+      )}
     </>
   )
 }
