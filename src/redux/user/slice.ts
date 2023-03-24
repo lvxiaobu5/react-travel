@@ -56,7 +56,6 @@ export const userSlice = createSlice({
       state.error = null
     },
     [signIn.rejected.type]: (state, action: PayloadAction<string | null>) => {
-      const a = action.payload
       state.loading = false
       state.error = action.payload
     }

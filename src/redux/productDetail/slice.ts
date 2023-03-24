@@ -15,6 +15,7 @@ const initialState: ProductDetailState = {
 }
 
 // 相当于一个封装了多个dispatch和异步代码的actionCreator
+// 数据流1：这里生成action，把后端数据放入action里，在组件里dispatch该action
 export const getProductDetail: any = createAsyncThunk(
   // 命名空间可以设置为slice名称拼接此action名
   'productDetail/getProductDetail',
@@ -25,6 +26,7 @@ export const getProductDetail: any = createAsyncThunk(
   }
 )
 
+// 数据流2：组件dispatch后通过payload传来下面的reducer，然后修改了state里的数据
 export const productDetailSlice = createSlice({
   name: 'productDetail',
   initialState,

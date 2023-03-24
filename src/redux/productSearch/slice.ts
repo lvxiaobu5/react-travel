@@ -59,7 +59,6 @@ export const productSearchSlice = createSlice({
       state.error = null
     },
     [getProductSearch.rejected.type]: (state, action: PayloadAction<string | null>) => {
-      const a = action.payload
       state.loading = false
       state.error = action.payload
     }
