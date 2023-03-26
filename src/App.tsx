@@ -13,7 +13,8 @@ import {
   Register,
   Detail,
   Search,
-  ShoppingCart
+  ShoppingCart,
+  Order
 } from './pages'
 import { useDispatch } from 'react-redux';
 import { getShoppingCart } from './redux/shoppingCart/slice';
@@ -54,6 +55,14 @@ function App() {
             element={
               <PrivateRoute isAuthenticated={jwt !== null}>
                 <ShoppingCart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='/order'
+            element={
+              <PrivateRoute isAuthenticated={jwt !== null}>
+                <Order />
               </PrivateRoute>
             }
           />

@@ -6,15 +6,17 @@ import { ProductList, PaymentCard } from "../../components";
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../redux/hooks";
 import { clearShoppingCart } from "../../redux/shoppingCart/slice";
+import { useNavigate } from "react-router-dom";
 
 export const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const loading = useSelector(s => s.shoppingCart.loading)
   const shoppingCartItems = useSelector(s => s.shoppingCart.items)
   const jwt = useSelector(s => s.user.token)
 
   const handlePay = () => {
-    alert('支付成功！')
+    navigate(`/order`)
   }
   const handleClearCart = () => {
     dispatch(clearShoppingCart({jwt, itemIds: shoppingCartItems.map(s => s.id)}))
