@@ -5,7 +5,7 @@ import { Row, Col, Affix } from 'antd'
 import { ProductList, PaymentCard } from "../../components";
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../redux/hooks";
-import { clearShoppingCart } from "../../redux/shoppingCart/slice";
+import { clearShoppingCart, checkout } from "../../redux/shoppingCart/slice";
 import { useNavigate } from "react-router-dom";
 
 export const ShoppingCart: React.FC = () => {
@@ -16,6 +16,8 @@ export const ShoppingCart: React.FC = () => {
   const jwt = useSelector(s => s.user.token)
 
   const handlePay = () => {
+    if (shoppingCartItems.length <= 0) return
+    dispatch(checkout(jwt))
     navigate(`/order`)
   }
   const handleClearCart = () => {

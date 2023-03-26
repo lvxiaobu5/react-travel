@@ -60,6 +60,20 @@ export const clearShoppingCart: any = createAsyncThunk(
     )
   }
 )
+// 订单支付
+export const checkout: any = createAsyncThunk(
+  // 命名空间可以设置为slice名称拼接此action名
+  'shoppingCart/checkout',
+  // thunkAPI下面有dispatch和getState等方法
+  async (jwt: string, thunkAPI) => {
+    const { data } = await axios.post(`${url}/shoppingCart/checkout`, null, {
+      headers: {
+        Authorization: `bearer ${jwt}`
+      }
+    })
+    return data
+  }
+)
 
 export const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
@@ -106,6 +120,19 @@ export const shoppingCartSlice = createSlice({
       state.error = null
     },
     [clearShoppingCart.rejected.type]: (state, action: PayloadAction<string | null>) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    // 订单支付
+    [checkout.pending]: (state) => {
+      state.loading = true
+    },
+    [checkout.fulfilled.type]: (state, action) => {
+      state.items = []
+      state.loading = false
+      state.error = null
+    },
+    [checkout.rejected.type]: (state, action: PayloadAction<string | null>) => {
       state.loading = false
       state.error = action.payload
     }
