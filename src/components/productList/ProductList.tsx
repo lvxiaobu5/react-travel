@@ -45,7 +45,10 @@ export const ProductList: React.FC<PropsType> = ({data, pagination, onPageChange
               <Text delete>￥ {item.originalPrice} </Text>
               <Text type="danger">￥ {item.price} </Text>
               <Link to={`/detail/${item.id}`}>
-                <Text>{item.title}</Text>
+                <Text
+                  style={{ maxWidth: 340 }}
+                  ellipsis={item.title.length > 20 ? { tooltip: item.title } : false}
+                >{item.title}</Text>
               </Link>
             </Title>
             <div className={styles["m_b_20"]}>

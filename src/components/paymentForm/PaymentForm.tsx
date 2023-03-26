@@ -19,6 +19,9 @@ export const PaymentForm = () => {
       bordered={false}
       className={styles["payment-credit-card"]}
     >
+      <div>
+        <img className={styles["img"]} src="https://img1.baidu.com/it/u=2297183161,807451713&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=444" alt="404" />
+      </div>
       <PaymentInputsWrapper {...wrapperProps}>
         {/* <svg {...getCardImageProps({ images })} /> */}
         <input {...getCardNumberProps()} />
