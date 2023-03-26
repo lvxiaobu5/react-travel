@@ -11,6 +11,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { productSearchSlice } from './productSearch/slice'
 import { userSlice } from './user/slice'
 import { shoppingCartSlice } from './shoppingCart/slice'
+import { orderSlice } from './order/slice'
 
 // combineReducers方法创建store，把多个reducer捆绑起来
 const rootReducer = combineReducers({
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   productDetail: productDetailSlice.reducer,
   productSearch: productSearchSlice.reducer,
   user: userSlice.reducer,
-  shoppingCart: shoppingCartSlice.reducer
+  shoppingCart: shoppingCartSlice.reducer,
+  order: orderSlice.reducer
 })
 
 // createStore需要传入一个reducer作为参数
