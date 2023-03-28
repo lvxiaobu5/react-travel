@@ -38,7 +38,7 @@ export const ProductList: React.FC<PropsType> = ({data, pagination, onPageChange
 
   return (
     <>
-      {data.map((item) => (
+      {data.length && data.map((item) => (
         <Layout key={item.id} className={styles["layoutStyle"]}>
           <Content className={styles["contentStyle"]}>
             <Title>
