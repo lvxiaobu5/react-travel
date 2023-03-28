@@ -49,7 +49,8 @@ function App() {
           <Route path='/signIn' element={<SignIn />} />
           <Route path='/register' element={<Register />} />
           <Route path='/detail/:touristRouteId' element={<Detail />} />
-          <Route path='/search/:keyword' element={<Search />} />
+          {/* 如果不加?那么不输入字符直接搜索url变成/search/就会匹配到404页面而不会匹配到该路由 */}
+          <Route path='/search/:keyword?' element={<Search />} />
           <Route
             path='/shoppingCart'
             element={

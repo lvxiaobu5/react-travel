@@ -145,6 +145,9 @@ export const Header: React.FC = () => {
       setUsername(token.username)
     }
   }, [jwt])
+  const handleSearch = (keyword: string) => {
+    navigate(`/search/${keyword}`)
+  }
   const onLogout = () => {
     // 直接修改state的数据
     dispatch(userSlice.actions.logOut())
@@ -196,8 +199,8 @@ export const Header: React.FC = () => {
         <Search
           className={styles["search-input"]}
           placeholder='请输入旅游目的地、主题或关键字'
-          onSearch={keyword => navigate(`/search/${keyword}`)}
-        ></Search>
+          onSearch={handleSearch}
+        />
       </Header>
       <Menu className={styles["main-menu"]} items={menus} mode='horizontal'></Menu>
     </div>
