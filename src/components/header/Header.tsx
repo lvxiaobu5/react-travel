@@ -149,7 +149,8 @@ export const Header: React.FC = () => {
     // 直接修改state的数据
     dispatch(userSlice.actions.logOut())
     navigate(`/`)
-    window.location.reload() // 刷新页面，可加可不加
+    // 刷新页面，不能写，因为在logOut的同时reload页面会造成redux运行不完整，会导致该用户无法logOut
+    // window.location.reload()
   }
 
   return (
