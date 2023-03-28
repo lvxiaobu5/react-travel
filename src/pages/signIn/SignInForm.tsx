@@ -27,9 +27,7 @@ export const SignInForm: React.FC = () => {
     }))
   };
   
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
+  const onFinishFailed = (errorInfo: any) => {};
 
   return (
     <Form

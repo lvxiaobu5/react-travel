@@ -30,11 +30,16 @@ export const getProductSearch: any = createAsyncThunk(
     if (paramaters.keyword) {
       newUrl += `&keyword=${paramaters.keyword}`
     }
-    const res = await axios.get(newUrl)
-    console.log(1, res)
-    return {
-      data: res.data,
-      pagination: JSON.parse(res.headers["x-pagination"])
+    try {
+      const res = await axios.get(newUrl)
+      return {
+        data: res.data,
+        pagination: JSON.parse(res.headers["x-pagination"])
+      }
+    } catch (err: any) {
+      return {
+        error: err.response.data
+      }
     }
   }
 )
@@ -56,7 +61,7 @@ export const productSearchSlice = createSlice({
       state.data = action.payload.data
       state.pagination = action.payload.pagination
       state.loading = false
-      state.error = null
+      state.error = action.payload.error
     },
     [getProductSearch.rejected.type]: (state, action: PayloadAction<string | null>) => {
       state.loading = false

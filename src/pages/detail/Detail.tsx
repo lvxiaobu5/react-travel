@@ -39,7 +39,6 @@ export const Detail:React.FC = () => {
 //     setLoading(true)
 //     try {
 //       const { data } = await axios.get(`${url}/touristRoutes/${touristRouteId}`)
-//       console.log(1, data)
 //       setProduct(data)
 //       setLoading(false)
 //     } catch (error: any) {

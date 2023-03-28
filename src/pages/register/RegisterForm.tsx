@@ -20,9 +20,7 @@ export const RegisterForm: React.FC = () => {
       message.error('注册失败！')
     }
   };
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
+  const onFinishFailed = (errorInfo: any) => {};
   
   return (
     <Form

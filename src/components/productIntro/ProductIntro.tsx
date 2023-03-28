@@ -99,7 +99,6 @@ export const ProductIntro: React.FC<PropsType> = ({
       ),
     },
   ]
-  console.log(2, pictures)
 
   return (
     <div className={styles["intro-container"]}>

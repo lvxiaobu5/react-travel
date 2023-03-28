@@ -62,7 +62,11 @@ export const Search: React.FC = () => {
       ></Spin>
     )
   } else if (error) {
-    return (<div>网站出错：{error}</div>)
+    return (
+      <MainLayout>
+        <h3>{error}，请重新输入</h3>
+      </MainLayout>
+    )
   }
   
   return (
