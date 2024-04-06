@@ -1,6 +1,6 @@
 ## 项目简介
 
-携程旅游网项目包含从首页浏览商品列表，商品详情，注册登录，模糊搜索，加入购物车，提交订单，订单管理等功能。
+携程旅游网项目包含从首页浏览商品列表，模糊搜索，注册登录，商品详情，加入购物车，提交订单，订单管理等功能。
 
 当前仓库为携程旅游网的**项目模板**。
 
@@ -14,21 +14,25 @@
 <table>
   <tr>
     <td>首页</td>
+    <td>模糊搜索</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/lvxiaobu5/images/blob/main/react-travel/home.png" alt=""></td>
+    <td><img src="https://github.com/lvxiaobu5/images/blob/main/react-travel/search.png" alt=""></td>
+  </tr>
+  <tr>
     <td>注册</td>
     <td>登录</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/lvxiaobu5/images/blob/main/react-travel/home.png" alt=""></td>
     <td><img src="https://github.com/lvxiaobu5/images/blob/main/react-travel/register.png" alt=""></td>
     <td><img src="https://github.com/lvxiaobu5/images/blob/main/react-travel/login.png" alt=""></td>
   </tr>
   <tr>
-    <td>搜索结果</td>
     <td>商品详情</td>
     <td>购物车</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/lvxiaobu5/images/blob/main/react-travel/search.png" alt=""></td>
     <td><img src="https://github.com/lvxiaobu5/images/blob/main/react-travel/detail.png" alt=""></td>
     <td><img src="https://github.com/lvxiaobu5/images/blob/main/react-travel/cart.png" alt=""></td>
   </tr>
