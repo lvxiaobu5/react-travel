@@ -6,7 +6,7 @@
 
 ### 技术栈
 
-- 前端框架：[React](React18 + TS + Setup)
+- 前端框架：[React](React18 + TS)
 - 状态管理：[react-redux]
 - 组件库：[Ant Design]
 
